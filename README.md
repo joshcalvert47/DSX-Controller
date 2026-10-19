@@ -16,7 +16,7 @@
 
 ---
 
-DSX (formerly **(DS3Activator)[https://github.com/jamesy0ung/DS3Activator]**) started as a workaround for one specific bug: since macOS Monterey, a DualShock 3 plugged in over USB is detected but never activated, so games see a dead controller. DSX sends the missing activation command automatically and then grew into a small controller companion for Sony pads.
+DSX (formerly (DS3Activator)[https://github.com/jamesy0ung/DS3Activator]) started as a workaround for one specific bug: since macOS Monterey, a DualShock 3 plugged in over USB is detected but never activated, so games see a dead controller. DSX sends the missing activation command automatically and then grew into a small controller companion for Sony pads.
 
 It runs entirely in the menu bar, does not poll, and uses Apple's `IOKit.hid` APIs directly, no kernel extensions, no helper daemons, no third-party libraries.
 
