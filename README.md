@@ -16,9 +16,9 @@
 
 ---
 
-DSX (formerly **DS3Activator**) started as a workaround for one specific bug: since macOS Monterey, a DualShock 3 plugged in over USB is detected but never activated, so games see a dead controller. DSX sends the missing activation command automatically and then grew into a small controller companion for Sony pads.
+DSX (formerly **(DS3Activator)[https://github.com/jamesy0ung/DS3Activator]**) started as a workaround for one specific bug: since macOS Monterey, a DualShock 3 plugged in over USB is detected but never activated, so games see a dead controller. DSX sends the missing activation command automatically and then grew into a small controller companion for Sony pads.
 
-It runs entirely in the menu bar, does not poll, and uses Apple's `IOKit.hid` APIs directly — no kernel extensions, no helper daemons, no third-party libraries.
+It runs entirely in the menu bar, does not poll, and uses Apple's `IOKit.hid` APIs directly, no kernel extensions, no helper daemons, no third-party libraries.
 
 ## What it does
 
@@ -39,7 +39,7 @@ On macOS 12+, the system enumerates a DS3 but never sends the HID feature report
 
 ### Player numbers and colours
 
-Controllers are assigned the lowest free player slot (1–4) when they connect, and the slot stays stable until they disconnect — like a console.
+Controllers are assigned the lowest free player slot (1–4) when they connect, and the slot stays stable until they disconnect,like a console.
 
 - **Player 1** uses the lightbar colour you pick in Settings (default blue).
 - **Players 2–4** get red, green, and pink so pads are easy to tell apart.
@@ -54,8 +54,8 @@ The menu shows the battery percentage and charging state for DualShock 4 and Dua
 DSX
 ────────────────────────────
 Connected Controllers
-  P1  DualSense — Bluetooth — 85% charging
-  P2  DualShock 4 — USB — 60%
+  P1  DualSense,Bluetooth,85% charging
+  P2  DualShock 4,USB,60%
 ────────────────────────────
 Settings…                  ⌘,
 ────────────────────────────
@@ -68,11 +68,11 @@ macOS leaves a Bluetooth DualShock 4 pulsing white indefinitely because it never
 
 ### Everything else
 
-- **Menu bar only** — no Dock icon, no windows until you open Settings.
+- **Menu bar only**,no Dock icon, no windows until you open Settings.
 - **Notifications** for connections, activation, and lightbar failures, with an optional verbose mode.
 - **Launch at login** via `SMAppService`.
 - **Sandboxed**, with USB and Bluetooth device access declared in its entitlements.
-- **No idle polling** — IOKit callbacks wake the app only when something happens.
+- **No idle polling**,IOKit callbacks wake the app only when something happens.
 
 ## Requirements
 
@@ -105,10 +105,10 @@ Changing the colour applies immediately to every connected DualShock 4 and DualS
 
 All report layouts live in [`ControllerLightReports.swift`](DSX/ControllerLightReports.swift) and are kept separate from the IOKit plumbing so the bytes can be tested directly.
 
-- **DualShock 4** — output report `0x05` over USB (32 bytes, RGB at 6–8); output report `0x11` over Bluetooth (78 bytes, RGB at 8–10) with a CRC-32 over an `0xA2` prefix and the first 74 bytes.
-- **DualSense** — output report `0x02` over USB (48 bytes) wrapping a 47-byte effects payload; report `0x31` over Bluetooth with the same CRC scheme. Lightbar enable is `0x14` in the effects flags, player LEDs at offset 43, RGB at 44–46.
-- **Battery** — DualShock 4 status byte at offset 30 (+2 over Bluetooth); DualSense at offset 53 (+1 over Bluetooth).
-- macOS expects the report ID as the **first byte of the buffer** for numbered reports, in addition to the `reportID` argument — the buffers above include it.
+- **DualShock 4**,output report `0x05` over USB (32 bytes, RGB at 6–8); output report `0x11` over Bluetooth (78 bytes, RGB at 8–10) with a CRC-32 over an `0xA2` prefix and the first 74 bytes.
+- **DualSense**,output report `0x02` over USB (48 bytes) wrapping a 47-byte effects payload; report `0x31` over Bluetooth with the same CRC scheme. Lightbar enable is `0x14` in the effects flags, player LEDs at offset 43, RGB at 44–46.
+- **Battery**,DualShock 4 status byte at offset 30 (+2 over Bluetooth); DualSense at offset 53 (+1 over Bluetooth).
+- macOS expects the report ID as the **first byte of the buffer** for numbered reports, in addition to the `reportID` argument,the buffers above include it.
 
 ## Project layout
 
@@ -128,16 +128,16 @@ Adding another Sony controller means adding a case to `ControllerType` with its 
 
 ## Troubleshooting
 
-- **Controller not listed** — quit other apps that grab HID devices (Steam, controller mapping tools) and reconnect the pad.
-- **DS3 still not working** — it must be connected by USB. Try a different cable or port; some charge-only cables carry no data.
-- **Lights don't change** — make sure "Set lightbar colour on connect" is enabled, then unplug and reconnect the controller. Enable verbose notifications to see lightbar failures, or check Console.app (subsystem `org.jamesyoung.DS3Activator`) for the underlying IOKit error.
-- **No battery reading** — the DualShock 3 does not report battery over HID, and a DualSense only reports it after the enhanced report mode is enabled (DSX does this automatically over Bluetooth).
-- **Launch at login needs approval** — macOS may place the app in Login Items as "requires approval"; approve it in System Settings → General → Login Items.
+- **Controller not listed**,quit other apps that grab HID devices (Steam, controller mapping tools) and reconnect the pad.
+- **DS3 still not working**,it must be connected by USB. Try a different cable or port; some charge-only cables carry no data.
+- **Lights don't change**,make sure "Set lightbar colour on connect" is enabled, then unplug and reconnect the controller. Enable verbose notifications to see lightbar failures, or check Console.app (subsystem `org.jamesyoung.DS3Activator`) for the underlying IOKit error.
+- **No battery reading**,the DualShock 3 does not report battery over HID, and a DualSense only reports it after the enhanced report mode is enabled (DSX does this automatically over Bluetooth).
+- **Launch at login needs approval**,macOS may place the app in Login Items as "requires approval"; approve it in System Settings → General → Login Items.
 
 ## Limitations
 
 - Lights and player LEDs are set on connect and when settings change; DSX does not animate or stream effects.
-- No button remapping, rumble, touchpad, or motion support — macOS exposes the controller to games itself.
+- No button remapping, rumble, touchpad, or motion support,macOS exposes the controller to games itself.
 - Player slots are assigned per connection and reset when a controller disconnects.
 - DualShock 3 support targets the USB activation flow; Bluetooth pairing and its handshake are not handled.
 
