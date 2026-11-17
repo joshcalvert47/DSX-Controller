@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		1AB293872DBB80FB003C0DCE /* DSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AB293872DBB80FB003C0DCE /* DSController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1AB293892DBB80FB003C0DCE /* DSX */ = {
+		1AB293892DBB80FB003C0DCE /* DSController */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DSX;
+			path = DSController;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		1AB2937E2DBB80FB003C0DCE = {
 			isa = PBXGroup;
 			children = (
-				1AB293892DBB80FB003C0DCE /* DSX */,
+				1AB293892DBB80FB003C0DCE /* DSController */,
 				1AB293882DBB80FB003C0DCE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +40,7 @@
 		1AB293882DBB80FB003C0DCE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1AB293872DBB80FB003C0DCE /* DSX.app */,
+				1AB293872DBB80FB003C0DCE /* DSController.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1AB293862DBB80FB003C0DCE /* DSX */ = {
+		1AB293862DBB80FB003C0DCE /* DSController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1AB293932DBB80FC003C0DCE /* Build configuration list for PBXNativeTarget "DSX" */;
+			buildConfigurationList = 1AB293932DBB80FC003C0DCE /* Build configuration list for PBXNativeTarget "DSController" */;
 			buildPhases = (
 				1AB293832DBB80FB003C0DCE /* Sources */,
 				1AB293842DBB80FB003C0DCE /* Frameworks */,
@@ -61,13 +61,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				1AB293892DBB80FB003C0DCE /* DSX */,
+				1AB293892DBB80FB003C0DCE /* DSController */,
 			);
-			name = DSX;
+			name = DSController;
 			packageProductDependencies = (
 			);
-			productName = DSX;
-			productReference = 1AB293872DBB80FB003C0DCE /* DSX.app */;
+			productName = DSController;
+			productReference = 1AB293872DBB80FB003C0DCE /* DSController.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1AB293822DBB80FB003C0DCE /* Build configuration list for PBXProject "DSX" */;
+			buildConfigurationList = 1AB293822DBB80FB003C0DCE /* Build configuration list for PBXProject "DSController" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1AB293862DBB80FB003C0DCE /* DSX */,
+				1AB293862DBB80FB003C0DCE /* DSController */,
 			);
 		};
 /* End PBXProject section */
@@ -250,7 +250,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DSX/DSX.entitlements;
+				CODE_SIGN_ENTITLEMENTS = DSController/DSController.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -259,7 +259,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DSX;
+				INFOPLIST_KEY_CFBundleDisplayName = DSController;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -269,7 +269,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.joshc.DSX;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshc.DSController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -282,7 +282,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DSX/DSX.entitlements;
+				CODE_SIGN_ENTITLEMENTS = DSController/DSController.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -291,7 +291,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DSX;
+				INFOPLIST_KEY_CFBundleDisplayName = DSController;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -301,7 +301,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.joshc.DSX;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshc.DSController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -312,7 +312,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1AB293822DBB80FB003C0DCE /* Build configuration list for PBXProject "DSX" */ = {
+		1AB293822DBB80FB003C0DCE /* Build configuration list for PBXProject "DSController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AB293912DBB80FC003C0DCE /* Debug */,
@@ -321,7 +321,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1AB293932DBB80FC003C0DCE /* Build configuration list for PBXNativeTarget "DSX" */ = {
+		1AB293932DBB80FC003C0DCE /* Build configuration list for PBXNativeTarget "DSController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AB293942DBB80FC003C0DCE /* Debug */,

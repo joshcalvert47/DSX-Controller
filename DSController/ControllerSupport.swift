@@ -1,6 +1,6 @@
 //
 //  ControllerSupport.swift
-//  DS3Activator
+//  DSController
 //
 //  Shared controller model. Add a case here (plus a configurator) to support
 //  another Sony controller.

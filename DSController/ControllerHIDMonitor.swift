@@ -1,6 +1,6 @@
 //
 //  ControllerHIDMonitor.swift
-//  DS3Activator
+//  DSController
 //
 //  Watches for supported controllers and reports connections, removals,
 //  and battery updates.

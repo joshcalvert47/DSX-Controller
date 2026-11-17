@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1AB293862DBB80FB003C0DCE"
-               BuildableName = "DSX.app"
-               BlueprintName = "DSX"
-               ReferencedContainer = "container:DSX.xcodeproj">
+               BuildableName = "DSController.app"
+               BlueprintName = "DSController"
+               ReferencedContainer = "container:DSController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1AB293862DBB80FB003C0DCE"
-            BuildableName = "DSX.app"
-            BlueprintName = "DSX"
-            ReferencedContainer = "container:DSX.xcodeproj">
+            BuildableName = "DSController.app"
+            BlueprintName = "DSController"
+            ReferencedContainer = "container:DSController.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1AB293862DBB80FB003C0DCE"
-            BuildableName = "DSX.app"
-            BlueprintName = "DSX"
-            ReferencedContainer = "container:DSX.xcodeproj">
+            BuildableName = "DSController.app"
+            BlueprintName = "DSController"
+            ReferencedContainer = "container:DSController.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

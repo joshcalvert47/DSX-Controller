@@ -1,6 +1,6 @@
 //
 //  ControllerConfiguration.swift
-//  DSX
+//  DSController
 //
 //  Applies controller-specific setup: DS3 activation, DS4/DualSense lights,
 //  and the player-number palette.
@@ -37,7 +37,7 @@ final class ControllerConfigurator {
                                 category: AppConstants.Logging.Category.activation)
 
     /// Serializes light writes so rapid colour changes cannot overlap.
-    private let lightQueue = DispatchQueue(label: "org.jamesyoung.DS3Activator.lights")
+    private let lightQueue = DispatchQueue(label: "com.joshc.DSController.lights")
 
     private init() {}
 

@@ -1,6 +1,6 @@
 //
 //  ControllerLightReports.swift
-//  DSX
+//  DSController
 //
 //  Pure output-report builders for Sony controller lights. Kept separate from
 //  the configurator so the byte layouts can be tested directly.

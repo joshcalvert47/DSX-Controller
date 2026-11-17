@@ -1,6 +1,6 @@
 //
 //  ControllerBattery.swift
-//  DS3Activator
+//  DSController
 //
 //  Parses battery status from Sony controller input reports.
 //

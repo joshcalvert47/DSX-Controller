@@ -1,6 +1,6 @@
 //
-//  DS3ActivatorApp.swift
-//  DS3Activator
+//  DSControllerApp.swift
+//  DSController
 //
 //  Created by James Young on 25/4/2025.
 //
@@ -29,7 +29,7 @@ enum AppConstants {
     
     /// Logger subsystem and categories
     enum Logging {
-        static let subsystem = "org.jamesyoung.DS3Activator"
+        static let subsystem = "com.joshc.DSController"
         
         enum Category {
             static let app = "Application"
@@ -211,7 +211,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
         setupMenuBar()
         setupHID()
         
-        logger.info("DS3Activator launched successfully")
+        logger.info("DSController launched successfully")
     }
     
     // MARK: - Permissions
@@ -242,7 +242,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem.button?.image = NSImage(
             systemSymbolName: "gamecontroller.fill",
-            accessibilityDescription: "DSX"
+            accessibilityDescription: "DSController"
         )
         
         rebuildMenu()
@@ -254,7 +254,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
         let menu = NSMenu()
         
         // Add title item
-        let titleItem = NSMenuItem(title: "DSX", action: nil, keyEquivalent: "")
+        let titleItem = NSMenuItem(title: "DSController", action: nil, keyEquivalent: "")
         titleItem.isEnabled = false
         menu.addItem(titleItem)
         menu.addItem(.separator())
@@ -327,7 +327,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
                 backing: .buffered,
                 defer: false
             )
-            window.title = "DSX Settings"
+            window.title = "DSController Settings"
             // Keep the window alive so Settings can be reopened after closing.
             window.isReleasedWhenClosed = false
             window.contentView = hostingController.view
@@ -544,7 +544,7 @@ struct SettingsView: View {
             logger.info("Settings view appeared, launch at login status: \(launchAtLogin)")
         }
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
-            // Pick up changes made in System Settings while DSX was inactive.
+            // Pick up changes made in System Settings while DSController was inactive.
             refreshStatuses()
         }
     }
@@ -556,7 +556,7 @@ struct SettingsView: View {
             appIcon
             
             VStack(alignment: .leading, spacing: 1) {
-                Text("DSX")
+                Text("DSController")
                     .font(.title3.weight(.semibold))
                 Text("PlayStation controller companion")
                     .font(.callout)
@@ -589,7 +589,7 @@ struct SettingsView: View {
     
     private var footer: some View {
         HStack(spacing: 6) {
-            Text("DSX")
+            Text("DSController")
                 .fontWeight(.medium)
             if let version = versionString {
                 Text("Version \(version)")
@@ -620,7 +620,7 @@ struct SettingsView: View {
                     Label("Approval needed", systemImage: "exclamationmark.triangle.fill")
                         .font(.callout.weight(.medium))
                         .foregroundStyle(.orange)
-                    Text("Allow DSX in Login Items to finish turning this on.")
+                    Text("Allow DSController in Login Items to finish turning this on.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Button("Open Login Items Settings…", action: openLoginItemsSettings)
@@ -632,7 +632,7 @@ struct SettingsView: View {
         } header: {
             Text("General")
         } footer: {
-            Text("Start DSX automatically and keep it waiting in the menu bar.")
+            Text("Start DSController automatically and keep it waiting in the menu bar.")
         }
     }
     
@@ -652,7 +652,7 @@ struct SettingsView: View {
                     Label("Notifications are turned off", systemImage: "bell.slash.fill")
                         .font(.callout.weight(.medium))
                         .foregroundStyle(.orange)
-                    Text("Enable notifications for DSX in System Settings.")
+                    Text("Enable notifications for DSController in System Settings.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -873,7 +873,7 @@ extension SMAppService.Status {
 // MARK: - App Entry Point
 
 @main
-struct DS3ActivatorApp: App {
+struct DSControllerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     
     var body: some Scene {

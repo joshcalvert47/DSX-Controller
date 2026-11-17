@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="DSX/Assets.xcassets/AppIcon.appiconset/download.png" width="128" alt="DSX app icon">
+  <img src="DSController/Assets.xcassets/AppIcon.appiconset/download.png" width="128" alt="DSController app icon">
 </p>
 
-<h1 align="center">DSX</h1>
+<h1 align="center">DSController</h1>
 
 <p align="center">
   A tiny macOS menu bar utility that makes PlayStation controllers behave the way they should.
@@ -16,13 +16,13 @@
 
 ---
 
-DSX (formerly [DS3Activator](https://github.com/jamesy0ung/DS3Activator)) started as a workaround for one specific bug: since macOS Monterey, a DualShock 3 plugged in over USB is detected but never activated, so games see a dead controller. DSX sends the missing activation command automatically and then grew into a small controller companion for Sony pads.
+DSController (formerly [DS3Activator](https://github.com/jamesy0ung/DS3Activator)) started as a workaround for one specific bug: since macOS Monterey, a DualShock 3 plugged in over USB is detected but never activated, so games see a dead controller. DSController sends the missing activation command automatically and then grew into a small controller companion for Sony pads.
 
 It runs entirely in the menu bar, does not poll, and uses Apple's `IOKit.hid` APIs directly, no kernel extensions, no helper daemons, no third-party libraries.
 
 ## What it does
 
-| Controller | Product IDs | Connection | What DSX handles |
+| Controller | Product IDs | Connection | What DSController handles |
 | --- | --- | --- | --- |
 | **DualShock 3** | `0x0268` | USB | Activation + player LED |
 | **DualShock 4** | `0x05C4`, `0x09CC`, `0x081F` | USB, Bluetooth | Lightbar + battery |
@@ -30,7 +30,7 @@ It runs entirely in the menu bar, does not poll, and uses Apple's `IOKit.hid` AP
 
 ### DualShock 3 activation
 
-On macOS 12+, the system enumerates a DS3 but never sends the HID feature report that puts it into a usable state. On connect, DSX:
+On macOS 12+, the system enumerates a DS3 but never sends the HID feature report that puts it into a usable state. On connect, DSController:
 
 1. Opens the device exclusively.
 2. Sends feature report `0xF4` with payload `42 0C 00 00`.
@@ -51,7 +51,7 @@ Controllers are assigned the lowest free player slot (1–4) when they connect, 
 The menu shows the battery percentage and charging state for DualShock 4 and DualSense, parsed from their input reports. Bluetooth DualSense pads are switched from the truncated `0x01` report to the full `0x31` report so battery data is actually available.
 
 ```
-DSX
+DSController
 ────────────────────────────
 Connected Controllers
   P1  DualSense,Bluetooth,85% charging
@@ -64,7 +64,7 @@ Quit                       ⌘Q
 
 ### The Bluetooth white pulse
 
-macOS leaves a Bluetooth DualShock 4 pulsing white indefinitely because it never sends a lightbar command. DSX sends a solid colour once the pad finishes connecting and retries if the controller refuses early writes. DualSense pads get the same retry handling, spaced past their own connection animation.
+macOS leaves a Bluetooth DualShock 4 pulsing white indefinitely because it never sends a lightbar command. DSController sends a solid colour once the pad finishes connecting and retries if the controller refuses early writes. DualSense pads get the same retry handling, spaced past their own connection animation.
 
 ### Everything else
 
@@ -85,16 +85,16 @@ macOS leaves a Bluetooth DualShock 4 pulsing white indefinitely because it never
 ```sh
 git clone https://github.com/jamesy0ung/DS3Activator.git
 cd DS3Activator
-open DSX.xcodeproj
+open DSController.xcodeproj
 ```
 
-Select the **DSX** scheme and press **⌘R**. The app has no external dependencies, so there is nothing to resolve or install.
+Select the **DSController** scheme and press **⌘R**. The app has no external dependencies, so there is nothing to resolve or install.
 
 To run it outside Xcode, archive the app and move it to `/Applications`. If you build with your own signing identity, set your team under **Signing & Capabilities**; the entitlements file already declares the USB and Bluetooth access the app needs.
 
 ## Usage
 
-1. Launch **DSX**. A game controller icon appears in the menu bar.
+1. Launch **DSController**. A game controller icon appears in the menu bar.
 2. Connect a controller over USB or pair it over Bluetooth.
 3. The menu lists it with its player number, transport, and battery level.
 4. Open **Settings…** to pick the player 1 colour, toggle notifications, or enable launch at login.
@@ -103,7 +103,7 @@ Changing the colour applies immediately to every connected DualShock 4 and DualS
 
 ## How the reports are built
 
-All report layouts live in [`ControllerLightReports.swift`](DSX/ControllerLightReports.swift) and are kept separate from the IOKit plumbing so the bytes can be tested directly.
+All report layouts live in [`ControllerLightReports.swift`](DSController/ControllerLightReports.swift) and are kept separate from the IOKit plumbing so the bytes can be tested directly.
 
 - **DualShock 4**,output report `0x05` over USB (32 bytes, RGB at 6–8); output report `0x11` over Bluetooth (78 bytes, RGB at 8–10) with a CRC-32 over an `0xA2` prefix and the first 74 bytes.
 - **DualSense**,output report `0x02` over USB (48 bytes) wrapping a 47-byte effects payload; report `0x31` over Bluetooth with the same CRC scheme. Lightbar enable is `0x14` in the effects flags, player LEDs at offset 43, RGB at 44–46.
@@ -113,15 +113,15 @@ All report layouts live in [`ControllerLightReports.swift`](DSX/ControllerLightR
 ## Project layout
 
 ```
-DSX.xcodeproj/               Xcode project (target and scheme: DSX)
-DSX/
-  DS3ActivatorApp.swift      App delegate, menu bar, settings UI, notifications
+DSController.xcodeproj/               Xcode project (target and scheme: DSController)
+DSController/
+  DSControllerApp.swift      App delegate, menu bar, settings UI, notifications
   ControllerSupport.swift    Controller types, product IDs, HID matching
   ControllerHIDMonitor.swift Device matching/removal + input report callbacks
   ControllerConfiguration.swift  Activation and light orchestration
   ControllerLightReports.swift   Report builders, CRC-32, player palette
   ControllerBattery.swift    Battery parsing for DS4 and DualSense
-  DSX.entitlements           Sandbox + USB/Bluetooth access
+  DSController.entitlements           Sandbox + USB/Bluetooth access
 ```
 
 Adding another Sony controller means adding a case to `ControllerType` with its product IDs and a configurator that knows its output reports.
@@ -130,13 +130,13 @@ Adding another Sony controller means adding a case to `ControllerType` with its 
 
 - **Controller not listed**,quit other apps that grab HID devices (Steam, controller mapping tools) and reconnect the pad.
 - **DS3 still not working**,it must be connected by USB. Try a different cable or port; some charge-only cables carry no data.
-- **Lights don't change**,make sure "Set lightbar colour on connect" is enabled, then unplug and reconnect the controller. Enable verbose notifications to see lightbar failures, or check Console.app (subsystem `org.jamesyoung.DS3Activator`) for the underlying IOKit error.
-- **No battery reading**,the DualShock 3 does not report battery over HID, and a DualSense only reports it after the enhanced report mode is enabled (DSX does this automatically over Bluetooth).
+- **Lights don't change**,make sure "Set lightbar colour on connect" is enabled, then unplug and reconnect the controller. Enable verbose notifications to see lightbar failures, or check Console.app (subsystem `com.joshc.DSController`) for the underlying IOKit error.
+- **No battery reading**,the DualShock 3 does not report battery over HID, and a DualSense only reports it after the enhanced report mode is enabled (DSController does this automatically over Bluetooth).
 - **Launch at login needs approval**,macOS may place the app in Login Items as "requires approval"; approve it in System Settings → General → Login Items.
 
 ## Limitations
 
-- Lights and player LEDs are set on connect and when settings change; DSX does not animate or stream effects.
+- Lights and player LEDs are set on connect and when settings change; DSController does not animate or stream effects.
 - No button remapping, rumble, touchpad, or motion support,macOS exposes the controller to games itself.
 - Player slots are assigned per connection and reset when a controller disconnects.
 - DualShock 3 support targets the USB activation flow; Bluetooth pairing and its handshake are not handled.
